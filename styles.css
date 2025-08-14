@@ -825,19 +825,32 @@ tr:hover {
 /* Terminal Styling */
 .terminal {
   background: var(--stone-900);
-  color: var(--emerald-400);
-  border-radius: var(--radius-xl);
+  color: var(--stone-100);
+  border-radius: var(--radius-lg);
   padding: var(--space-6);
-  font-family: var(--font-mono);
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
   font-size: 0.9rem;
   margin: var(--space-8) 0;
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--stone-700);
+  max-height: 400px;
+  overflow-y: auto;
 }
-
 
 .terminal-content {
   margin-top: 0;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-height: 350px;
+  overflow-y: auto;
+  color: var(--stone-100);
+}
+
+.terminal-content > div {
+  margin: 2px 0;
 }
 
 .terminal-prompt {
@@ -851,6 +864,29 @@ tr:hover {
 .terminal-output {
   color: var(--stone-400);
   margin-top: var(--space-2);
+}
+
+/* Terminal scrollbar styling */
+.terminal::-webkit-scrollbar,
+.terminal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terminal::-webkit-scrollbar-track,
+.terminal-content::-webkit-scrollbar-track {
+  background: var(--stone-800);
+  border-radius: 4px;
+}
+
+.terminal::-webkit-scrollbar-thumb,
+.terminal-content::-webkit-scrollbar-thumb {
+  background: var(--stone-600);
+  border-radius: 4px;
+}
+
+.terminal::-webkit-scrollbar-thumb:hover,
+.terminal-content::-webkit-scrollbar-thumb:hover {
+  background: var(--stone-500);
 }
 
 /* Quiz Styling */

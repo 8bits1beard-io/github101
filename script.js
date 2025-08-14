@@ -1590,27 +1590,38 @@ function showSetupTab(tabType) {
 function simulateGitCheck() {
     const output = document.getElementById('setupCheckOutput');
     output.style.display = 'block';
-    output.innerHTML = '';
+    output.className = 'terminal';
+    output.innerHTML = '<div class="terminal-content"></div>';
+    const terminalContent = output.querySelector('.terminal-content');
     
     const commands = [
-        'Checking Git configuration...',
-        'git --version',
-        'git version 2.42.0.windows.1',
-        '',
-        'git config --global --list',
-        'user.name=Joshua Walderbach',
-        'user.email=joshua.walderbach@company.com',
-        'init.defaultbranch=main',
-        'core.preloadindex=true',
-        'core.fscache=true',
-        '',
-        '✅ Git is properly configured!'
+        { text: '$ git --version', isCommand: true },
+        { text: 'git version 2.42.0.windows.1', isOutput: true },
+        { text: '', isOutput: true },
+        { text: '$ git config --global --list', isCommand: true },
+        { text: 'user.name=Norman Borlaug', isOutput: true },
+        { text: 'user.email=norman.borlaug@ag.tamu.edu', isOutput: true },
+        { text: 'init.defaultbranch=main', isOutput: true },
+        { text: 'core.preloadindex=true', isOutput: true },
+        { text: 'core.fscache=true', isOutput: true },
+        { text: '', isOutput: true },
+        { text: '✅ Git is properly configured!', isSuccess: true }
     ];
     
+    terminalContent.innerHTML = '';
     let i = 0;
     const interval = setInterval(() => {
         if (i < commands.length) {
-            output.innerHTML += commands[i] + '\\n';
+            const line = document.createElement('div');
+            if (commands[i].isCommand) {
+                line.innerHTML = `<span style="color: var(--blue-400);">${commands[i].text}</span>`;
+            } else if (commands[i].isSuccess) {
+                line.innerHTML = `<span style="color: var(--emerald-400);">${commands[i].text}</span>`;
+            } else {
+                line.textContent = commands[i].text;
+            }
+            terminalContent.appendChild(line);
+            terminalContent.scrollTop = terminalContent.scrollHeight;
             i++;
         } else {
             clearInterval(interval);
@@ -1621,28 +1632,39 @@ function simulateGitCheck() {
 function simulateGitHubAuth() {
     const output = document.getElementById('setupCheckOutput');
     output.style.display = 'block';
-    output.innerHTML = '';
+    output.className = 'terminal';
+    output.innerHTML = '<div class="terminal-content"></div>';
+    const terminalContent = output.querySelector('.terminal-content');
     
     const commands = [
-        'Testing GitHub authentication...',
-        'ssh -T git@github.com',
-        'Hi Joshua Walderbach! You\'ve successfully authenticated, but GitHub does not provide shell access.',
-        '',
-        'curl -H "Authorization: token ghp_****" https://api.github.com/user',
-        '{',
-        '  "login": "joshua-walderbach",',
-        '  "id": 12345678,',
-        '  "name": "Joshua Walderbach",',
-        '  "email": "joshua.walderbach@company.com"',
-        '}',
-        '',
-        '✅ GitHub authentication successful!'
+        { text: '$ ssh -T git@github.com', isCommand: true },
+        { text: 'Hi Norman Borlaug! You\'ve successfully authenticated, but GitHub does not provide shell access.', isOutput: true },
+        { text: '', isOutput: true },
+        { text: '$ curl -H "Authorization: token ghp_****" https://api.github.com/user', isCommand: true },
+        { text: '{', isOutput: true },
+        { text: '  "login": "norman-borlaug",', isOutput: true },
+        { text: '  "id": 12345678,', isOutput: true },
+        { text: '  "name": "Norman Borlaug",', isOutput: true },
+        { text: '  "email": "norman.borlaug@ag.tamu.edu"', isOutput: true },
+        { text: '}', isOutput: true },
+        { text: '', isOutput: true },
+        { text: '✅ GitHub authentication successful!', isSuccess: true }
     ];
     
+    terminalContent.innerHTML = '';
     let i = 0;
     const interval = setInterval(() => {
         if (i < commands.length) {
-            output.innerHTML += commands[i] + '\\n';
+            const line = document.createElement('div');
+            if (commands[i].isCommand) {
+                line.innerHTML = `<span style="color: var(--blue-400);">${commands[i].text}</span>`;
+            } else if (commands[i].isSuccess) {
+                line.innerHTML = `<span style="color: var(--emerald-400);">${commands[i].text}</span>`;
+            } else {
+                line.textContent = commands[i].text;
+            }
+            terminalContent.appendChild(line);
+            terminalContent.scrollTop = terminalContent.scrollHeight;
             i++;
         } else {
             clearInterval(interval);
@@ -1653,47 +1675,57 @@ function simulateGitHubAuth() {
 function simulateToolsCheck() {
     const output = document.getElementById('setupCheckOutput');
     output.style.display = 'block';
-    output.innerHTML = '';
+    output.className = 'terminal';
+    output.innerHTML = '<div class="terminal-content"></div>';
+    const terminalContent = output.querySelector('.terminal-content');
     
     const commands = [
-        'Checking optional tools...',
-        '',
-        '🔍 Checking GitHub Desktop...',
-        'GitHub Desktop found at: C:\\\\Users\\\\Joshua\\\\AppData\\\\Local\\\\GitHubDesktop\\\\GitHubDesktop.exe',
-        'Version: 3.3.3',
-        '✅ GitHub Desktop installed',
-        '',
-        '🔍 Checking VS Code...',
-        'code --version',
-        '1.84.2',
-        'Universal',
-        'VS Code found at: C:\\\\Program Files\\\\Microsoft VS Code\\\\Code.exe',
-        '✅ VS Code installed',
-        '',
-        '🔍 Checking VS Code Extensions...',
-        'code --list-extensions | findstr -i github',
-        'GitHub.vscode-github-extension-pack',
-        'code --list-extensions | findstr -i powershell',
-        'ms-vscode.powershell',
-        'code --list-extensions | findstr -i python',
-        'ms-python.python',
-        'code --list-extensions | findstr -i gitlens',
-        'eamodio.gitlens',
-        '✅ All recommended extensions installed',
-        '',
-        '🎉 Setup verification complete!',
-        '✅ Git for Windows: Installed and configured',
-        '✅ GitHub Authentication: Working',
-        '✅ GitHub Desktop: Installed',
-        '✅ VS Code + Extensions: Installed',
-        '',
-        'You\'re ready to start using GitHub!'
+        { text: '🔍 Checking GitHub Desktop...', isInfo: true },
+        { text: 'GitHub Desktop found at: C:\\Users\\Norman\\AppData\\Local\\GitHubDesktop\\GitHubDesktop.exe', isOutput: true },
+        { text: 'Version: 3.3.3', isOutput: true },
+        { text: '✅ GitHub Desktop installed', isSuccess: true },
+        { text: '', isOutput: true },
+        { text: '🔍 Checking VS Code...', isInfo: true },
+        { text: '$ code --version', isCommand: true },
+        { text: '1.84.2', isOutput: true },
+        { text: 'Universal', isOutput: true },
+        { text: 'VS Code found at: C:\\Program Files\\Microsoft VS Code\\Code.exe', isOutput: true },
+        { text: '✅ VS Code installed', isSuccess: true },
+        { text: '', isOutput: true },
+        { text: '🔍 Checking VS Code Extensions...', isInfo: true },
+        { text: '$ code --list-extensions | findstr -i github', isCommand: true },
+        { text: 'GitHub.vscode-github-extension-pack', isOutput: true },
+        { text: '$ code --list-extensions | findstr -i powershell', isCommand: true },
+        { text: 'ms-vscode.powershell', isOutput: true },
+        { text: '$ code --list-extensions | findstr -i gitlens', isCommand: true },
+        { text: 'eamodio.gitlens', isOutput: true },
+        { text: '✅ All recommended extensions installed', isSuccess: true },
+        { text: '', isOutput: true },
+        { text: '🎉 Setup verification complete!', isInfo: true },
+        { text: '✅ Git for Windows: Installed and configured', isSuccess: true },
+        { text: '✅ GitHub Authentication: Working', isSuccess: true },
+        { text: '✅ GitHub Desktop: Installed', isSuccess: true },
+        { text: '✅ VS Code + Extensions: Installed', isSuccess: true },
+        { text: '', isOutput: true },
+        { text: 'You\'re ready to start using GitHub!', isInfo: true }
     ];
     
+    terminalContent.innerHTML = '';
     let i = 0;
     const interval = setInterval(() => {
         if (i < commands.length) {
-            output.innerHTML += commands[i] + '\\n';
+            const line = document.createElement('div');
+            if (commands[i].isCommand) {
+                line.innerHTML = `<span style="color: var(--blue-400);">${commands[i].text}</span>`;
+            } else if (commands[i].isSuccess) {
+                line.innerHTML = `<span style="color: var(--emerald-400);">${commands[i].text}</span>`;
+            } else if (commands[i].isInfo) {
+                line.innerHTML = `<span style="color: var(--amber-400);">${commands[i].text}</span>`;
+            } else {
+                line.textContent = commands[i].text;
+            }
+            terminalContent.appendChild(line);
+            terminalContent.scrollTop = terminalContent.scrollHeight;
             i++;
         } else {
             clearInterval(interval);
