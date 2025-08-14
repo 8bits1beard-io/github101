@@ -3828,8 +3828,8 @@ function triggerKonamiEasterEgg() {
             container.style.animation = '';
         }
         
-        // Open the YouTube video
-        window.open('https://www.youtube.com/watch?v=wece_wR_u9s', '_blank');
+        // Open the YouTube video (Rick Roll!)
+        window.open('https://youtu.be/dQw4w9WgXcQ?si=ccryDsmRFoXk7XcW', '_blank');
         
     }, 2000);
 }
