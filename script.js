@@ -1499,8 +1499,7 @@ function showSection(index) {
             document.getElementById('quizIntro').style.display = 'block';
             document.getElementById('quizContainer').style.display = 'none';
             document.getElementById('quizResults').style.display = 'none';
-            document.getElementById('certificateSection').style.display = 'none';
-        }
+            }
     }
     
     // Save progress
@@ -3539,6 +3538,7 @@ function submitQuiz() {
     if (passed) {
         document.getElementById('certificateSection').style.display = 'block';
     }
+    
 }
 
 function showQuizResults(correctAnswers, percentage, passed) {
@@ -3551,7 +3551,7 @@ function showQuizResults(correctAnswers, percentage, passed) {
             <div class="score-display ${passed ? 'pass' : 'fail'}">${percentage}%</div>
             <div class="result-message ${passed ? 'pass' : 'fail'}">
                 ${passed ? 
-                    '🎉 Congratulations! You passed the GitHub Mastery Quiz!<br>🏆 You\'ve earned your GitHub 101 certification!' : 
+                    '🎉 Congratulations! You passed the GitHub Mastery Quiz!<br>🏆 You\'ve earned your GitHub 101 certificate!' : 
                     '📚 Keep studying! You need 80% to pass. Review the material and try again.'
                 }
             </div>
@@ -3628,7 +3628,7 @@ function generateCertificate() {
             <div class="certificate-header">
                 <div class="certificate-logo">🎓</div>
                 <div class="certificate-school">Walderbach College of Foolishness</div>
-                <div class="certificate-subtitle"><em>Etiam stultus aliquid docere potest.</em></div>
+                <div class="certificate-subtitle"><em>Ex stultis discimus.</em></div>
             </div>
             
             <div class="certificate-title">CERTIFICATE OF COMPLETION</div>
@@ -3640,8 +3640,8 @@ function generateCertificate() {
             <div class="certificate-achievement">
                 has successfully completed the <strong>GitHub 101</strong> 
                 comprehensive training program, demonstrating mastery of Git version control, 
-                GitHub collaboration features, code project management, 
-                and industry best practices with a final score of <span class="score-highlight">${finalQuizScore}%</span>.
+                GitHub collaboration features, and modern development best practices 
+                with a final score of <span class="score-highlight">${finalQuizScore}%</span>.
                 ${isPerfectScore ? '<br><br><strong>🌟 Achieved Perfect Score - Exceptional Mastery! 🌟</strong>' : ''}
             </div>
             
@@ -3665,102 +3665,13 @@ function generateCertificate() {
         <p>You have successfully completed GitHub 101!</p>
         ${certificateHTML}
         <div style="margin-top: 2rem; text-align: center;">
-            <button class="btn" onclick="generateCertificate()">Generate Another Certificate</button>
+            <button class="btn btn-secondary" onclick="resetQuiz()">Take Quiz Again</button>
         </div>
     `;
-    
-    // Play celebratory music for perfect score AFTER displaying certificate
-    if (isPerfectScore) {
-        setTimeout(() => {
-            playCelebratoryMusic();
-        }, 100);
-    }
     
     console.log('Certificate displayed successfully for:', studentName, 'Score:', finalQuizScore);
 }
 
-// Celebratory music for perfect score
-function playCelebratoryMusic() {
-    try {
-        // Check if Web Audio API is supported
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        if (!AudioContext) {
-            console.log('Web Audio API not supported');
-            return;
-        }
-
-        const audioContext = new AudioContext();
-        
-        // Victory fanfare melody (frequencies in Hz)
-        const melody = [
-            { freq: 523.25, duration: 0.3 }, // C5
-            { freq: 659.25, duration: 0.3 }, // E5
-            { freq: 783.99, duration: 0.3 }, // G5
-            { freq: 1046.5, duration: 0.4 }, // C6
-            { freq: 783.99, duration: 0.2 }, // G5
-            { freq: 1046.5, duration: 0.6 }, // C6 (longer)
-        ];
-        
-        let currentTime = audioContext.currentTime;
-        
-        melody.forEach((note, index) => {
-            // Create oscillator for each note
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-            
-            // Connect nodes
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            
-            // Configure oscillator
-            oscillator.frequency.setValueAtTime(note.freq, currentTime);
-            oscillator.type = 'triangle'; // Warmer sound
-            
-            // Configure volume envelope
-            gainNode.gain.setValueAtTime(0, currentTime);
-            gainNode.gain.linearRampToValueAtTime(0.3, currentTime + 0.05); // Attack
-            gainNode.gain.linearRampToValueAtTime(0.2, currentTime + note.duration * 0.7); // Sustain
-            gainNode.gain.linearRampToValueAtTime(0, currentTime + note.duration); // Release
-            
-            // Start and stop oscillator
-            oscillator.start(currentTime);
-            oscillator.stop(currentTime + note.duration);
-            
-            // Update time for next note
-            currentTime += note.duration;
-        });
-        
-        // Add some celebratory sound effects after the melody
-        setTimeout(() => {
-            // High sparkle sound
-            for (let i = 0; i < 5; i++) {
-                setTimeout(() => {
-                    const sparkleOsc = audioContext.createOscillator();
-                    const sparkleGain = audioContext.createGain();
-                    
-                    sparkleOsc.connect(sparkleGain);
-                    sparkleGain.connect(audioContext.destination);
-                    
-                    const startFreq = 1500 + Math.random() * 1000;
-                    sparkleOsc.frequency.setValueAtTime(startFreq, audioContext.currentTime);
-                    sparkleOsc.frequency.exponentialRampToValueAtTime(startFreq * 2, audioContext.currentTime + 0.3);
-                    sparkleOsc.type = 'sine';
-                    
-                    sparkleGain.gain.setValueAtTime(0.1, audioContext.currentTime);
-                    sparkleGain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
-                    
-                    sparkleOsc.start(audioContext.currentTime);
-                    sparkleOsc.stop(audioContext.currentTime + 0.3);
-                }, i * 100);
-            }
-        }, 1800);
-        
-        console.log('🎵 Perfect score celebration music played!');
-        
-    } catch (error) {
-        console.log('Audio playback not available:', error);
-    }
-}
 
 // Quiz initialization flag to prevent multiple initializations
 
