@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Joshua Walderbach">
+    <meta name="created" content="2025-08-13">
+    <title>GitHub 101: Complete Git & GitHub Tutorial</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body data-theme="light">
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor" class="github-logo">
+                            <path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </div>
+                    <div class="logo-text">GitHub 101</div>
+                </div>
+                <div class="developer-attribution">
+                    <div class="developer-label">Developed by</div>
+                    <div class="developer-name">Joshua Walderbach</div>
+                    <div class="version-info">
+                        <div class="version-label">Version 1.1.1</div>
+                        <div class="updated-label">Updated August 13, 2025</div>
+                    </div>
+                </div>
+            </div>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#intro" class="nav-link active" data-section="intro">Introduction</a></li>
+                    <li class="nav-item"><a href="#setup" class="nav-link" data-section="setup">Setup & Install</a></li>
+                    <li class="nav-item"><a href="#basics" class="nav-link" data-section="basics">Git Fundamentals</a></li>
+                    <li class="nav-item"><a href="#repositories" class="nav-link" data-section="repositories">Repositories</a></li>
+                    <li class="nav-item"><a href="#advanced" class="nav-link" data-section="advanced">Advanced Topics</a></li>
+                    <li class="nav-item"><a href="#collaboration" class="nav-link" data-section="collaboration">Collaboration</a></li>
+                    <li class="nav-item"><a href="#best-practices" class="nav-link" data-section="best-practices">Best Practices</a></li>
+                    <li class="nav-item"><a href="#final-quiz" class="nav-link" data-section="final-quiz">Assessment</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <section id="intro" class="section active">
+                <div class="hero">
+                    <div class="hero-background"></div>
+                    <div class="hero-content">
+                        <h1>GitHub 101</h1>
+                        <p class="lead">A comprehensive guide to version control and collaborative development. Learn Git fundamentals, GitHub workflows, and best practices.</p>
+                        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                            <button class="btn btn-primary" onclick="navigateToSection('setup')">Get Started</button>
+                            <button class="btn btn-secondary" onclick="navigateToSection('basics')">Learn Fundamentals</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-header">
+                    <h2>Git vs GitHub: Understanding the Difference</h2>
+                    <p class="lead">Learn the key differences between Git (the version control system) and GitHub (the cloud platform) to master both tools effectively.</p>
+                </div>
+
+                <div class="comparison-cards">
+                    <div class="comparison-card">
+                        <div class="comparison-header git">
+                            <h3>🔧 Git</h3>
+                            <span class="comparison-type">Version Control System</span>
+                        </div>
+                        <ul class="comparison-features">
+                            <li>Runs locally on your computer</li>
+                            <li>Tracks changes in your files</li>
+                            <li>Creates snapshots (commits) of your code</li>
+                            <li>Manages different versions and branches</li>
+                            <li>Works offline</li>
+                            <li>Command-line tool</li>
+                        </ul>
+                    </div>
+
+                    <div class="comparison-card">
+                        <div class="comparison-header github">
+                            <h3>🌐 GitHub</h3>
+                            <span class="comparison-type">Cloud Platform</span>
+                        </div>
+                        <ul class="comparison-features">
+                            <li>Hosts your Git repositories online</li>
+                            <li>Enables collaboration with teams</li>
+                            <li>Provides web interface for Git</li>
+                            <li>Offers pull requests and code review</li>
+                            <li>Includes issue tracking and project management</li>
+                            <li>Requires internet connection</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="analogy-section">
+                    <h3>📚 Think of it this way:</h3>
+                    <p><strong>Git</strong> is like a powerful filing system for your documents that tracks every change you make. <strong>GitHub</strong> is like Google Drive - it stores your filing system in the cloud and lets you share it with others.</p>
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📝</div>
+                        <h3>Version Control</h3>
+                        <p>Track every change to your code with precision. Never lose work or wonder "what broke" again.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤝</div>
+                        <h3>Collaboration</h3>
+                        <p>Work seamlessly with teams of any size. Review code, discuss changes, and merge contributions effortlessly.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🚀</div>
+                        <h3>Deployment</h3>
+                        <p>Automate testing and deployment with GitHub Actions. Ship reliable code faster than ever.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3>Code Discovery</h3>
+                        <p>Explore millions of open-source projects. Learn from the best and contribute to the community.</p>
+                    </div>
+                </div>
+
+                <div class="git-workflow-visual">
+                    <div class="workflow-step">
+                        <h4>Edit</h4>
+                        <p>Make changes</p>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    <div class="workflow-step">
+                        <h4>Stage</h4>
+                        <p>Prepare commits</p>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    <div class="workflow-step">
+                        <h4>Commit</h4>
+                        <p>Save snapshot</p>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    <div class="workflow-step">
+                        <h4>Push</h4>
+                        <p>Share changes</p>
+                    </div>
+                </div>
+
+                <div class="interactive-demo">
+                    <h3>Interactive Demo: Version Control Concept</h3>
+                    <div class="version-timeline">
+                        <div class="version-item" data-version="1">
+                            <div class="version-circle">v1.0</div>
+                            <div class="version-content">Initial script</div>
+                        </div>
+                        <div class="version-item" data-version="2">
+                            <div class="version-circle">v1.1</div>
+                            <div class="version-content">Added error handling</div>
+                        </div>
+                        <div class="version-item" data-version="3">
+                            <div class="version-circle">v1.2</div>
+                            <div class="version-content">Performance improvements</div>
+                        </div>
+                    </div>
+                    <div class="demo-controls">
+                        <button class="btn" onclick="showVersion(1)">View v1.0</button>
+                        <button class="btn" onclick="showVersion(2)">View v1.1</button>
+                        <button class="btn" onclick="showVersion(3)">View v1.2</button>
+                    </div>
+                    <div class="code-display" id="codeDisplay">
+                        <pre><code class="language-powershell"># Initial PowerShell script
+Write-Host "Hello, World!"</code></pre>
+                    </div>
+                </div>
+
+                <div class="quick-check-section">
+                    <div class="quick-check-header">
+                        <div class="quick-check-icon">🧠</div>
+                        <h3>Quick Check</h3>
+                        <p>Test your understanding of the basics</p>
+                    </div>
+                    <div class="quick-check-content">
+                        <p class="question">What is the main benefit of version control?</p>
+                        <div class="quiz-options">
+                            <label class="quiz-option">
+                                <input type="radio" name="q1" value="a">
+                                <span class="option-text">Making code run faster</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q1" value="b">
+                                <span class="option-text">Tracking changes and collaboration</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q1" value="c">
+                                <span class="option-text">Creating websites</span>
+                            </label>
+                        </div>
+                        <button class="btn" onclick="checkAnswer('q1', 'b')">Check Answer</button>
+                        <div class="feedback" id="q1-feedback"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="setup" class="section">
+                <h2>Setting Up Git & GitHub</h2>
+                
+                <div class="setup-overview">
+                    <h3>🛠️ Complete Setup Guide</h3>
+                    <p>Choose your preferred workflow - you can use one or all of these tools together:</p>
+                    <div class="setup-options">
+                        <div class="setup-option essential">
+                            <h4>🔧 Essential (Required)</h4>
+                            <ul>
+                                <li>Git (Command Line)</li>
+                                <li>GitHub Account</li>
+                            </ul>
+                        </div>
+                        <div class="setup-option optional">
+                            <h4>🎨 Optional (Recommended)</h4>
+                            <ul>
+                                <li>GitHub Desktop (GUI)</li>
+                                <li>VS Code + GitHub Extension</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="setup-tabs">
+                    <button class="setup-tab active" onclick="showSetupTab('essential')">Git Installation</button>
+                    <button class="setup-tab" onclick="showSetupTab('desktop')">GitHub Desktop</button>
+                    <button class="setup-tab" onclick="showSetupTab('vscode')">Editor Integration</button>
+                    <button class="setup-tab" onclick="showSetupTab('comparison')">Tool Comparison</button>
+                </div>
+
+                <div class="setup-content active" id="essential">
+                    <h3>🔧 Essential Setup (Required)</h3>
+                    
+                    <div class="setup-step">
+                        <div class="step-header">
+                            <span class="step-number">1</span>
+                            <h4>Install Git</h4>
+                        </div>
+                        <div class="step-content">
+                            <ol>
+                                <li>Download Git from <a href="https://git-scm.com/downloads" target="_blank" class="external-link">git-scm.com/downloads</a></li>
+                                <li>Choose your operating system (Windows, macOS, or Linux)</li>
+                                <li>Run the installer and follow the setup wizard</li>
+                            </ol>
+                            
+                            <div class="install-options">
+                                <div class="option recommended">
+                                    <h5>✅ Recommended Selections:</h5>
+                                    <ul>
+                                        <li>☑️ Git Bash Here</li>
+                                        <li>☑️ Git GUI Here</li>
+                                        <li>☑️ Associate .git* configuration files with default text editor</li>
+                                        <li>☑️ Associate .sh files to be run with Bash</li>
+                                    </ul>
+                                </div>
+                                <div class="option">
+                                    <h5>🔧 Default Editor:</h5>
+                                    <p>Choose your preferred editor (VS Code, Notepad++, or Vim)</p>
+                                </div>
+                                <div class="option">
+                                    <h5>🌐 Line Ending Conversions:</h5>
+                                    <p>Select "Checkout Windows-style, commit Unix-style line endings"</p>
+                                </div>
+                            </div>
+                            
+                            <div class="verification">
+                                <h5>Verify Installation:</h5>
+                                <pre><code class="language-bash"># Open terminal/command prompt and test
+git --version
+# Should show: git version 2.42.0 or similar</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="setup-step">
+                        <div class="step-header">
+                            <span class="step-number">2</span>
+                            <h4>Configure Git Identity</h4>
+                        </div>
+                        <div class="step-content">
+                            <p>Set up your identity for commits:</p>
+                            <pre><code class="language-bash"># Set your name and email (required)
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+
+# Optional: Set default branch name
+git config --global init.defaultBranch main
+
+# Optional: Improve Windows performance
+git config --global core.preloadindex true
+git config --global core.fscache true
+git config --global gc.auto 256</code></pre>
+                            
+                            <div class="config-explanation">
+                                <h5>💡 Configuration Explanation:</h5>
+                                <ul>
+                                    <li><strong>user.name & user.email:</strong> Appears in every commit you make</li>
+                                    <li><strong>init.defaultBranch:</strong> Sets default branch name to 'main' (modern standard)</li>
+                                    <li><strong>Windows optimizations:</strong> Improves Git performance on Windows systems</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="setup-step">
+                        <div class="step-header">
+                            <span class="step-number">3</span>
+                            <h4>Create GitHub Account</h4>
+                        </div>
+                        <div class="step-content">
+                            <ol>
+                                <li>Visit <a href="https://github.com" target="_blank" class="external-link">github.com</a></li>
+                                <li>Sign up for a free account</li>
+                                <li>Verify your email address</li>
+                                <li><strong>Recommended:</strong> Enable two-factor authentication (2FA)</li>
+                            </ol>
+                            
+                            <div class="github-features">
+                                <h5>🎁 What you get with GitHub Free:</h5>
+                                <ul>
+                                    <li>Unlimited public repositories</li>
+                                    <li>Unlimited private repositories</li>
+                                    <li>GitHub Actions (2,000 minutes/month)</li>
+                                    <li>GitHub Packages (500MB storage)</li>
+                                    <li>Community support</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="setup-step">
+                        <div class="step-header">
+                            <span class="step-number">4</span>
+                            <h4>Set Up Authentication</h4>
+                        </div>
+                        <div class="step-content">
+                            <div class="auth-methods">
+                                <div class="auth-method recommended">
+                                    <h5>🔑 Option A: Personal Access Token (Recommended)</h5>
+                                    <ol>
+                                        <li>Go to GitHub → Settings → Developer settings → Personal access tokens</li>
+                                        <li>Click "Generate new token (classic)"</li>
+                                        <li>Select scopes: <code>repo</code>, <code>workflow</code>, <code>write:packages</code></li>
+                                        <li>Copy the token and store it securely (like in a password manager)</li>
+                                        <li>Use the token as your password when Git prompts for credentials</li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="auth-method">
+                                    <h5>🔐 Option B: SSH Keys (Advanced)</h5>
+                                    <pre><code class="language-bash"># Generate SSH key
+ssh-keygen -t ed25519 -C "your.email@example.com"
+
+# Add to SSH agent
+ssh-add ~/.ssh/id_ed25519
+
+# Copy public key to clipboard
+Get-Content ~/.ssh/id_ed25519.pub | clip
+
+# Add to GitHub: Settings → SSH and GPG keys → New SSH key</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="setup-content" id="desktop">
+                    <h3>🎨 GitHub Desktop (Visual Git Interface)</h3>
+                    
+                    <div class="tool-intro">
+                        <div class="tool-benefits">
+                            <h4>✨ Why GitHub Desktop?</h4>
+                            <ul>
+                                <li><strong>Visual Interface:</strong> See changes, branches, and history graphically</li>
+                                <li><strong>Beginner Friendly:</strong> No command line knowledge required</li>
+                                <li><strong>Windows Integration:</strong> Native Windows application</li>
+                                <li><strong>GitHub Integration:</strong> Built-in pull request and issue management</li>
+                                <li><strong>Conflict Resolution:</strong> Visual merge conflict resolution</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tool-screenshot">
+                            <div class="screenshot-placeholder">
+                                <p>📸 GitHub Desktop Interface</p>
+                                <ul>
+                                    <li>Repository list</li>
+                                    <li>Branch visualization</li>
+                                    <li>Commit history</li>
+                                    <li>File diff viewer</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="setup-step">
+                        <div class="step-header">
+                            <span class="step-number">1</span>
+                            <h4>Download and Install</h4>
+                        </div>
+                        <div class="step-content">
+                            <ol>
+                                <li>Download from <a href="https://desktop.github.com" target="_blank" class="external-link">desktop.github.com</a></li>
+                                <li>Run <code>GitHubDesktopSetup-x64.exe</code></li>
+                                <li>GitHub Desktop will automatically install and update</li>
+                                <li>No additional configuration needed - it uses your system Git installation</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="setup-step">
+                        <div class="step-header">
+                            <span class="step-number">2</span>
+                            <h4>Sign In and Configure</h4>
+                        </div>
+                        <div class="step-content">
+                            <ol>
+                                <li>Launch GitHub Desktop</li>
+                                <li>Sign in with your GitHub account</li>
+                                <li>Choose your name and email (should match your Git config)</li>
+                                <li>Select repositories to clone or create new ones</li>
+                            </ol>
+                            
+                            <div class="desktop-workflow">
+                                <h5>🔄 Typical GitHub Desktop Workflow:</h5>
+                                <div class="workflow-steps">
+                                    <div class="mini-step">1. Clone repository</div>
+                                    <div class="mini-step">2. Create branch</div>
+                                    <div class="mini-step">3. Make changes in your editor</div>
+                                    <div class="mini-step">4. Review changes in Desktop</div>
+                                    <div class="mini-step">5. Commit changes</div>
+                                    <div class="mini-step">6. Push to GitHub</div>
+                                    <div class="mini-step">7. Create Pull Request</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="setup-step">
+                        <div class="step-header">
+                            <span class="step-number">3</span>
+                            <h4>Key Features for Windows Engineers</h4>
+                        </div>
+                        <div class="step-content">
+                            <div class="feature-grid">
+                                <div class="feature">
+                                    <h5>Repository Management</h5>
+                                    <p>Clone, create, and switch between repositories with ease</p>
+                                </div>
+                                <div class="feature">
+                                    <h5>Branch Visualization</h5>
+                                    <p>See branch relationships and history graphically</p>
+                                </div>
+                                <div class="feature">
+                                    <h5>📝 Commit History</h5>
+                                    <p>Browse commits with file changes and diff viewing</p>
+                                </div>
+                                <div class="feature">
+                                    <h5>🔀 Merge Conflicts</h5>
+                                    <p>Resolve conflicts with built-in merge tools</p>
+                                </div>
+                                <div class="feature">
+                                    <h5>🔄 Pull Requests</h5>
+                                    <p>Create and manage pull requests directly from Desktop</p>
+                                </div>
+                                <div class="feature">
+                                    <h5>🔍 File Changes</h5>
+                                    <p>See exactly what changed in your PowerShell/Python files</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="setup-content" id="vscode">
+                    <h3>💻 VS Code + GitHub Integration</h3>
+                    
+                    <div class="tool-intro">
+                        <div class="tool-benefits">
+                            <h4>🚀 Why VS Code + GitHub?</h4>
+                            <ul>
+                                <li><strong>Integrated Workflow:</strong> Edit, commit, and push without leaving your editor</li>
+                                <li><strong>PowerShell Support:</strong> Excellent PowerShell extension with debugging</li>
+                                <li><strong>Python Support:</strong> Built-in Python support with linting and debugging</li>
+                                <li><strong>GitHub Features:</strong> Pull requests, issues, and codespaces integration</li>
+                                <li><strong>Extensions:</strong> Massive ecosystem for Windows development</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="setup-step">
+                        <div class="step-header">
+                            <span class="step-number">1</span>
+                            <h4>Install VS Code</h4>
+                        </div>
+                        <div class="step-content">
+                            <ol>
+                                <li>Download from <a href="https://code.visualstudio.com" target="_blank" class="external-link">code.visualstudio.com</a></li>
+                                <li>Run the installer (choose "User Installer" for single user)</li>
+                                <li><strong>Important:</strong> Check "Add to PATH" during installation</li>
+                                <li>VS Code automatically detects your Git installation</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="setup-step">
+                        <div class="step-header">
+                            <span class="step-number">2</span>
+                            <h4>Install Essential Extensions</h4>
+                        </div>
+                        <div class="step-content">
+                            <div class="extensions-grid">
+                                <div class="extension essential">
+                                    <h5>🔧 GitHub Extension Pack</h5>
+                                    <p><strong>Extension ID:</strong> <code>GitHub.vscode-github-extension-pack</code></p>
+                                    <p>Includes: GitHub Pull Requests, GitHub Repositories, GitHub Codespaces</p>
+                                </div>
+                                
+                                <div class="extension essential">
+                                    <h5>⚡ PowerShell Extension</h5>
+                                    <p><strong>Extension ID:</strong> <code>ms-vscode.PowerShell</code></p>
+                                    <p>Syntax highlighting, debugging, IntelliSense for PowerShell</p>
+                                </div>
+                                
+                                <div class="extension recommended">
+                                    <h5>📊 GitLens</h5>
+                                    <p><strong>Extension ID:</strong> <code>eamodio.gitlens</code></p>
+                                    <p>Enhanced Git capabilities and blame annotations</p>
+                                </div>
+                            </div>
+                            
+                            <div class="install-instructions">
+                                <h5>📦 Quick Install Commands:</h5>
+                                <pre><code class="language-powershell"># Install extensions via command line
+code --install-extension GitHub.vscode-github-extension-pack
+code --install-extension ms-vscode.PowerShell
+code --install-extension eamodio.gitlens</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="setup-step">
+                        <div class="step-header">
+                            <span class="step-number">3</span>
+                            <h4>Configure GitHub Integration</h4>
+                        </div>
+                        <div class="step-content">
+                            <ol>
+                                <li>Open VS Code</li>
+                                <li>Press <kbd>Ctrl+Shift+P</kbd> and type "GitHub: Sign In"</li>
+                                <li>Authenticate with your GitHub account</li>
+                                <li>VS Code will automatically sync your repositories</li>
+                            </ol>
+                            
+                            <div class="vscode-features">
+                                <h5>🎯 Key VS Code Git Features:</h5>
+                                <div class="feature-list">
+                                    <div class="vscode-feature">
+                                        <strong>Source Control Panel:</strong> Stage, commit, and push changes
+                                    </div>
+                                    <div class="vscode-feature">
+                                        <strong>Integrated Terminal:</strong> Run Git commands directly
+                                    </div>
+                                    <div class="vscode-feature">
+                                        <strong>Diff Editor:</strong> Compare file changes side-by-side
+                                    </div>
+                                    <div class="vscode-feature">
+                                        <strong>Merge Conflicts:</strong> Visual conflict resolution tools
+                                    </div>
+                                    <div class="vscode-feature">
+                                        <strong>Pull Requests:</strong> Create and review PRs without leaving VS Code
+                                    </div>
+                                    <div class="vscode-feature">
+                                        <strong>GitHub Issues:</strong> Link commits to issues automatically
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="setup-step">
+                        <div class="step-header">
+                            <span class="step-number">4</span>
+                            <h4>Windows Engineer Workflow</h4>
+                        </div>
+                        <div class="step-content">
+                            <div class="workflow-example">
+                                <h5>📝 Example: Editing a PowerShell Script</h5>
+                                <pre><code class="language-powershell"># 1. Open repository in VS Code
+code C:\Projects\PowerShell-Tools
+
+# 2. Create new branch (Ctrl+Shift+P → "Git: Create Branch")
+# 3. Edit your PowerShell script with full IntelliSense
+# 4. Use integrated terminal for testing:
+.\Scripts\Backup-Files.ps1 -WhatIf
+
+# 5. Stage changes in Source Control panel
+# 6. Commit with descriptive message
+# 7. Push branch and create PR directly in VS Code</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="setup-content" id="comparison">
+                    <h3>🔍 Tool Comparison Guide</h3>
+                    
+                    <div class="comparison-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Git CLI</th>
+                                    <th>GitHub Desktop</th>
+                                    <th>VS Code + GitHub</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Learning Curve</strong></td>
+                                    <td>⭐⭐⭐⭐⭐ (Steep)</td>
+                                    <td>⭐⭐ (Easy)</td>
+                                    <td>⭐⭐⭐ (Moderate)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Power & Flexibility</strong></td>
+                                    <td>⭐⭐⭐⭐⭐ (Maximum)</td>
+                                    <td>⭐⭐⭐ (Limited)</td>
+                                    <td>⭐⭐⭐⭐ (High)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Visual Interface</strong></td>
+                                    <td>❌ Text only</td>
+                                    <td>✅ Full GUI</td>
+                                    <td>✅ Integrated GUI</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>PowerShell Integration</strong></td>
+                                    <td>✅ Native</td>
+                                    <td>❌ External editor needed</td>
+                                    <td>✅ Excellent with extension</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Python Integration</strong></td>
+                                    <td>✅ Via terminal</td>
+                                    <td>❌ External editor needed</td>
+                                    <td>✅ Built-in support</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Merge Conflicts</strong></td>
+                                    <td>⭐⭐ (Text-based)</td>
+                                    <td>⭐⭐⭐⭐ (Visual tools)</td>
+                                    <td>⭐⭐⭐⭐⭐ (Best-in-class)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Pull Requests</strong></td>
+                                    <td>❌ Web browser only</td>
+                                    <td>✅ View and create</td>
+                                    <td>✅ Full management</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Automation Friendly</strong></td>
+                                    <td>✅ Perfect for scripts</td>
+                                    <td>❌ GUI only</td>
+                                    <td>✅ Tasks and extensions</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="recommendations">
+                        <h4>🎯 Recommendations by Role:</h4>
+                        
+                        <div class="role-recommendations">
+                            <div class="role-rec">
+                                <h5>👨‍💻 New to Git</h5>
+                                <p><strong>Start with:</strong> GitHub Desktop + VS Code</p>
+                                <p>Learn Git concepts visually, then gradually use command line</p>
+                            </div>
+                            
+                            <div class="role-rec">
+                                <h5>⚡ PowerShell Developer</h5>
+                                <p><strong>Recommended:</strong> VS Code + Git CLI</p>
+                                <p>Best PowerShell support with Git integration</p>
+                            </div>
+                            
+                            <div class="role-rec">
+                                <h5>🔧 System Administrator</h5>
+                                <p><strong>Recommended:</strong> Git CLI + GitHub Desktop</p>
+                                <p>Command line for automation, GUI for complex operations</p>
+                            </div>
+                            
+                            <div class="role-rec">
+                                <h5>👥 Team Lead</h5>
+                                <p><strong>Recommended:</strong> All tools</p>
+                                <p>Be proficient with what your team uses</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="interactive-demo">
+                    <h3>✅ Verify Your Setup</h3>
+                    <p>Test your installation and configuration:</p>
+                    <div class="demo-controls">
+                        <button class="btn" onclick="simulateGitCheck()">Check Git Config</button>
+                        <button class="btn" onclick="simulateGitHubAuth()">Test GitHub Auth</button>
+                        <button class="btn" onclick="simulateToolsCheck()">Check Optional Tools</button>
+                    </div>
+                    <div class="terminal-output" id="setupCheckOutput"></div>
+                </div>
+            </section>
+
+            <section id="basics" class="section">
+                <h2>Git Basics</h2>
+                
+                <div class="concept-grid">
+                    <div class="concept-card" onclick="expandConcept('repository')">
+                        <h3>📁 Repository</h3>
+                        <p>A folder that contains your project and its history</p>
+                    </div>
+                    <div class="concept-card" onclick="expandConcept('commit')">
+                        <h3>💾 Commit</h3>
+                        <p>A snapshot of your code at a specific point in time</p>
+                    </div>
+                    <div class="concept-card" onclick="expandConcept('branch')">
+                        <h3>🌳 Branch</h3>
+                        <p>A separate line of development</p>
+                    </div>
+                    <div class="concept-card" onclick="expandConcept('merge')">
+                        <h3>🔀 Merge</h3>
+                        <p>Combining changes from different branches</p>
+                    </div>
+                </div>
+
+                <div class="concept-details" id="conceptDetails"></div>
+
+                <div class="workflow-demo">
+                    <h3>Complete Git Workflow Guide</h3>
+                    
+                    <div class="workflow-tabs">
+                        <button class="workflow-tab active" onclick="showWorkflow('daily')">Daily Workflow</button>
+                        <button class="workflow-tab" onclick="showWorkflow('feature')">Feature Development</button>
+                        <button class="workflow-tab" onclick="showWorkflow('team-collaboration')">Team Collaboration</button>
+                    </div>
+
+                    <div class="workflow-content active" id="daily">
+                        <h4>📅 Daily Git Workflow for Windows Engineers</h4>
+                        <div class="workflow-steps">
+                            <div class="step" data-step="1">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Start Your Day - Sync with Remote</h4>
+                                    <pre><code class="language-bash"># Check current status
+git status
+
+# Switch to main branch
+git checkout main
+
+# Get latest changes from team
+git pull origin main
+
+# See what's new
+git log --oneline -5</code></pre>
+                                    <p class="step-note">Always start by syncing with the remote repository to get the latest changes from your team.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="step" data-step="2">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Create or Switch to Feature Branch</h4>
+                                    <pre><code class="language-bash"># Create new feature branch
+git checkout -b feature/improve-backup-logging
+
+# Or switch to existing branch
+git checkout feature/existing-feature
+
+# Verify you're on the right branch
+git branch</code></pre>
+                                    <p class="step-note">Work on features in separate branches to keep main stable.</p>
+                                </div>
+                            </div>
+
+                            <div class="step" data-step="3">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Make Your Changes</h4>
+                                    <pre><code class="language-powershell"># Edit your PowerShell scripts
+# Add-BackupLogging.ps1
+
+# Check what you've changed
+git diff
+
+# See which files are modified
+git status</code></pre>
+                                    <p class="step-note">Make focused, logical changes. Don't mix unrelated improvements in one commit.</p>
+                                </div>
+                            </div>
+
+                            <div class="step" data-step="4">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>Stage and Commit Changes</h4>
+                                    <pre><code class="language-bash"># Stage specific files
+git add Scripts/Get-SystemInfo.ps1
+git add Tests/Get-SystemInfo.Tests.ps1
+
+# Or stage all changes
+git add .
+
+# Review what's staged
+git diff --staged
+
+# Commit with descriptive message
+git commit -m "Add detailed CPU and memory reporting
+
+- Implement Get-CPUInfo function with core count and speed
+- Add Get-MemoryInfo with usage percentage calculation
+- Include error handling for remote computer access
+- Add progress indicators for multi-computer reporting"</code></pre>
+                                    <p class="step-note">Write commit messages that explain WHY you made the changes, not just WHAT changed.</p>
+                                </div>
+                            </div>
+
+                            <div class="step" data-step="5">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <h4>Push and Share Your Work</h4>
+                                    <pre><code class="language-bash"># Push branch to remote (first time)
+git push -u origin feature/cpu-memory-reporting
+
+# Subsequent pushes
+git push
+
+# Create pull request on GitHub
+# (Done via web interface)</code></pre>
+                                    <p class="step-note">Push regularly to backup your work and share progress with your team.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="workflow-content" id="feature">
+                        <h4>🚀 Feature Development Workflow</h4>
+                        <div class="feature-workflow">
+                            <div class="phase">
+                                <h5>Phase 1: Planning & Setup</h5>
+                                <pre><code class="language-bash"># Start from latest main
+git checkout main
+git pull origin main
+
+# Create descriptive feature branch
+git checkout -b feature/azure-blob-backup
+
+# Set up tracking with remote
+git push -u origin feature/azure-blob-backup</code></pre>
+                            </div>
+
+                            <div class="phase">
+                                <h5>Phase 2: Development Cycle</h5>
+                                <pre><code class="language-bash"># Work in small commits
+git add Scripts/Azure-Backup.ps1
+git commit -m "Add Azure Blob Storage connection module"
+
+git add Scripts/Azure-Backup.ps1
+git commit -m "Implement file upload with progress tracking"
+
+git add Tests/Azure-Backup.Tests.ps1
+git commit -m "Add unit tests for Azure backup functions"
+
+# Push frequently
+git push</code></pre>
+                            </div>
+
+                            <div class="phase">
+                                <h5>Phase 3: Stay Current</h5>
+                                <pre><code class="language-bash"># Regularly sync with main to avoid conflicts
+git checkout main
+git pull origin main
+git checkout feature/azure-blob-backup
+git merge main
+
+# Resolve any conflicts and continue</code></pre>
+                            </div>
+
+                            <div class="phase">
+                                <h5>Phase 4: Testing & Cleanup</h5>
+                                <pre><code class="language-bash"># Run tests before submitting
+Invoke-Pester -Path ./Tests/
+
+# Clean up commit history if needed
+git rebase -i HEAD~5  # Interactive rebase
+
+# Final push
+git push --force-with-lease  # Safe force push</code></pre>
+                            </div>
+
+                            <div class="phase">
+                                <h5>Phase 5: Integration</h5>
+                                <pre><code class="language-bash"># Create pull request via GitHub web interface
+# After approval and merge, clean up
+
+git checkout main
+git pull origin main
+git branch -d feature/azure-blob-backup
+git push origin --delete feature/azure-blob-backup</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="workflow-content" id="team-collaboration">
+                        <h4>👥 Team Collaboration Workflow</h4>
+                        
+                        <div class="collab-scenario">
+                            <h5>Scenario: Team developing a System Information Reporter tool</h5>
+                            
+                            <div class="collab-roles">
+                                <div class="role">
+                                    <h6>🔧 Developer A (You)</h6>
+                                    <p>Working on CPU and Memory reporting</p>
+                                </div>
+                                <div class="role">
+                                    <h6>👨‍💻 Developer B</h6>
+                                    <p>Working on disk and network info</p>
+                                </div>
+                                <div class="role">
+                                    <h6>👩‍💼 Team Lead</h6>
+                                    <p>Reviews and merges changes</p>
+                                </div>
+                            </div>
+
+                            <div class="collab-timeline">
+                                <div class="timeline-event">
+                                    <div class="time">Monday 9:00 AM</div>
+                                    <div class="event">
+                                        <h6>Team standup - assign work</h6>
+                                        <pre><code># Everyone syncs with main
+git checkout main && git pull origin main</code></pre>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-event">
+                                    <div class="time">Monday 9:30 AM</div>
+                                    <div class="event">
+                                        <h6>Create feature branches</h6>
+                                        <pre><code># You
+git checkout -b feature/cpu-memory-reporting
+
+# Developer B  
+git checkout -b feature/disk-network-info</code></pre>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-event">
+                                    <div class="time">Tuesday 2:00 PM</div>
+                                    <div class="event">
+                                        <h6>Share progress - create draft PR</h6>
+                                        <pre><code># Push work in progress
+git push -u origin feature/cpu-memory-reporting
+
+# Create draft pull request for early feedback</code></pre>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-event">
+                                    <div class="time">Wednesday 10:00 AM</div>
+                                    <div class="event">
+                                        <h6>Merge conflict resolution</h6>
+                                        <pre><code># Developer B merged their changes to main
+# You need to update your branch
+
+git checkout main
+git pull origin main
+git checkout feature/cpu-memory-reporting
+git merge main
+
+# Resolve conflicts in shared helper functions
+# Edit conflicted files, then:
+git add .
+git commit -m "Merge main - resolve utility function conflicts"</code></pre>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-event">
+                                    <div class="time">Thursday 4:00 PM</div>
+                                    <div class="event">
+                                        <h6>Ready for review</h6>
+                                        <pre><code># Mark PR as ready for review
+# Team lead reviews code
+# Address feedback with additional commits</code></pre>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-event">
+                                    <div class="time">Friday 11:00 AM</div>
+                                    <div class="event">
+                                        <h6>Merge and cleanup</h6>
+                                        <pre><code># After approval, team lead merges
+# Clean up your local repository
+
+git checkout main
+git pull origin main
+git branch -d feature/cpu-memory-reporting</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="best-practices-collab">
+                            <h5>👍 Collaboration Best Practices</h5>
+                            <ul>
+                                <li><strong>Communicate early:</strong> Create draft PRs to share progress</li>
+                                <li><strong>Small commits:</strong> Make focused, reviewable changes</li>
+                                <li><strong>Descriptive branches:</strong> Use clear naming like feature/what-it-does</li>
+                                <li><strong>Regular syncing:</strong> Merge main into your branch frequently</li>
+                                <li><strong>Test before pushing:</strong> Run tests locally first</li>
+                                <li><strong>Review thoroughly:</strong> Take time to understand teammates' code</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="workflow-simulator">
+                    <h4>🎮 Interactive Workflow Simulator</h4>
+                    <div class="simulator-controls">
+                        <button class="btn" onclick="startWorkflowSim()">Start New Feature</button>
+                        <button class="btn" onclick="simulateCommit()">Make Commit</button>
+                        <button class="btn" onclick="simulatePush()">Push Changes</button>
+                        <button class="btn" onclick="simulateMerge()">Merge to Main</button>
+                        <button class="btn" onclick="resetWorkflowSim()">Reset</button>
+                    </div>
+                    <div class="simulator-output" id="workflowSimOutput">
+                        <p>Click "Start New Feature" to begin the simulation...</p>
+                    </div>
+                </div>
+
+                <div class="advanced-topics">
+                    <h3>🌳 Branching and Merging</h3>
+                    
+                    <div class="topic-section">
+                        <h4>Creating and Switching Branches</h4>
+                        <p>Branches let you work on different features without affecting the main code:</p>
+                        <pre><code class="language-bash"># Create a new branch
+git branch feature/new-login-system
+
+# Create and switch to new branch in one command
+git checkout -b feature/new-login-system
+
+# Switch between branches
+git checkout main
+git checkout feature/new-login-system
+
+# List all branches
+git branch</code></pre>
+                    </div>
+
+                    <div class="topic-section">
+                        <h4>Merging Branches</h4>
+                        <p>When your feature is complete, merge it back to main:</p>
+                        <pre><code class="language-bash"># Switch to main branch first
+git checkout main
+
+# Pull latest changes
+git pull origin main
+
+# Merge your feature branch
+git merge feature/new-login-system
+
+# Delete the feature branch (optional)
+git branch -d feature/new-login-system</code></pre>
+                    </div>
+
+                    <div class="topic-section">
+                        <h4>Resolving Merge Conflicts</h4>
+                        <p>When Git can't automatically merge changes, you'll need to resolve conflicts:</p>
+                        <pre><code class="language-bash"># When merge conflict occurs, Git will show:
+# CONFLICT (content): Merge conflict in filename.txt
+
+# 1. Open the conflicted file and look for conflict markers:
+# <<<<<<< HEAD
+# Your current branch changes
+# =======
+# Changes from the branch being merged
+# >>>>>>> feature/new-login-system
+
+# 2. Edit the file to resolve conflicts
+# 3. Stage the resolved file
+git add filename.txt
+
+# 4. Complete the merge
+git commit</code></pre>
+                        
+                        <div class="conflict-example">
+                            <h5>Example Conflict Resolution:</h5>
+                            <div class="good-bad">
+                                <div class="bad">
+                                    <h4>❌ Before (Conflicted)</h4>
+                                    <pre><code>function loginUser() {
+<<<<<<< HEAD
+    return authenticateWithDatabase(user);
+=======
+    return authenticateWithAPI(user);
+>>>>>>> feature/new-login-system
+}</code></pre>
+                                </div>
+                                <div class="good">
+                                    <h4>✅ After (Resolved)</h4>
+                                    <pre><code>function loginUser() {
+    // Use API authentication for better security
+    return authenticateWithAPI(user);
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="repositories" class="section">
+                <h2>Working with Repositories</h2>
+                
+                <div class="tabs">
+                    <button class="tab-button active" onclick="showTab('create-repo')">Create Repository</button>
+                    <button class="tab-button" onclick="showTab('clone-repo')">Clone Repository</button>
+                    <button class="tab-button" onclick="showTab('manage-repo')">Manage Repository</button>
+                </div>
+
+                <div class="tab-content active" id="create-repo">
+                    <h3>Creating a New Repository</h3>
+                    
+                    <div class="repository-options">
+                        <div class="option-section">
+                            <h4 class="option-header">Option 1: Start on GitHub</h4>
+                            <div class="option-content">
+                                <div class="steps-list">
+                                    <ol>
+                                        <li>Click "New repository" on GitHub</li>
+                                        <li>Choose a name (e.g., "powershell-scripts")</li>
+                                        <li>Add description and README</li>
+                                        <li>Clone to your local machine</li>
+                                    </ol>
+                                </div>
+                                <pre><code class="language-bash">git clone https://github.com/username/powershell-scripts.git</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="option-section">
+                            <h4 class="option-header">Option 2: Start Locally</h4>
+                            <div class="option-content">
+                                <div class="steps-list">
+                                    <ol>
+                                        <li>Create project folder</li>
+                                        <li>Initialize Git repository</li>
+                                        <li>Create initial files</li>
+                                        <li>Push to GitHub</li>
+                                    </ol>
+                                </div>
+                                <pre><code class="language-bash">mkdir my-scripts
+cd my-scripts
+git init
+git remote add origin https://github.com/username/my-scripts.git</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="clone-repo">
+                    <h3>Cloning Existing Repositories</h3>
+                    <p>Cloning creates a local copy of a remote repository:</p>
+                    <pre><code class="language-bash">git clone https://github.com/username/repository-name.git</code></pre>
+                    
+                    <div class="interactive-demo">
+                        <h4>Try It: Clone Simulation</h4>
+                        <input type="text" id="cloneUrl" placeholder="Enter repository URL" value="https://github.com/example/powershell-utils.git">
+                        <button class="btn" onclick="simulateClone()">Simulate Clone</button>
+                        <div class="terminal" id="cloneOutput" style="display: none;">
+                            <div class="terminal-content" id="cloneTerminalContent"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="manage-repo">
+                    <h3>Managing Your Repository</h3>
+                    <div class="command-reference">
+                        <div class="command-item">
+                            <h4>Check Status</h4>
+                            <pre><code class="language-bash">git status</code></pre>
+                            <p>Shows modified files and staging area</p>
+                        </div>
+                        
+                        <div class="command-item">
+                            <h4>View History</h4>
+                            <pre><code class="language-bash">git log --oneline</code></pre>
+                            <p>Shows commit history in compact format</p>
+                        </div>
+                        
+                        <div class="command-item">
+                            <h4>Create Branch</h4>
+                            <pre><code class="language-bash">git checkout -b feature-branch</code></pre>
+                            <p>Creates and switches to a new branch</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="advanced" class="section">
+                <h2>Advanced GitHub Features</h2>
+                
+                <div class="advanced-grid">
+                    <div class="card">
+                        <h3>🍴 Forking and Contributing</h3>
+                        <p>Contribute to open source projects by forking repositories:</p>
+                        
+                        <div class="topic-section">
+                            <h4>Fork a Repository</h4>
+                            <ol>
+                                <li>Go to the repository on GitHub</li>
+                                <li>Click the "Fork" button in the top-right</li>
+                                <li>Choose your account to fork to</li>
+                                <li>GitHub creates your own copy</li>
+                            </ol>
+                        </div>
+
+                        <div class="topic-section">
+                            <h4>Clone Your Fork</h4>
+                            <pre><code class="language-bash"># Clone your forked repository
+git clone https://github.com/yourusername/project-name.git
+cd project-name
+
+# Add the original repository as upstream
+git remote add upstream https://github.com/originalowner/project-name.git
+
+# Verify remotes
+git remote -v</code></pre>
+                        </div>
+
+                        <div class="topic-section">
+                            <h4>Keep Your Fork Synchronized</h4>
+                            <pre><code class="language-bash"># Fetch changes from upstream
+git fetch upstream
+
+# Switch to main branch
+git checkout main
+
+# Merge upstream changes
+git merge upstream/main
+
+# Push updates to your fork
+git push origin main</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>🔄 Pull Requests</h3>
+                        <p>Propose changes and collaborate through pull requests:</p>
+                        
+                        <div class="topic-section">
+                            <h4>Creating a Pull Request</h4>
+                            <ol>
+                                <li>Push your changes to a branch on GitHub</li>
+                                <li>Go to the repository on GitHub</li>
+                                <li>Click "Compare & pull request"</li>
+                                <li>Write a clear title and description</li>
+                                <li>Click "Create pull request"</li>
+                            </ol>
+                        </div>
+
+                        <div class="topic-section">
+                            <h4>Review and Comment</h4>
+                            <ul>
+                                <li><strong>Review code:</strong> Check the "Files changed" tab</li>
+                                <li><strong>Add comments:</strong> Click line numbers to comment</li>
+                                <li><strong>Approve/Request changes:</strong> Use the review options</li>
+                                <li><strong>Merge:</strong> Once approved, merge the PR</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>📋 Issues and Project Management</h3>
+                        <p>Track bugs, tasks, and feature requests:</p>
+                        
+                        <div class="topic-section">
+                            <h4>Creating Issues</h4>
+                            <ol>
+                                <li>Go to the "Issues" tab</li>
+                                <li>Click "New issue"</li>
+                                <li>Choose a template (bug, feature, etc.)</li>
+                                <li>Fill in details and assign labels</li>
+                                <li>Submit the issue</li>
+                            </ol>
+                        </div>
+
+                        <div class="topic-section">
+                            <h4>Managing Issues</h4>
+                            <ul>
+                                <li><strong>Labels:</strong> Categorize with bug, enhancement, etc.</li>
+                                <li><strong>Assignees:</strong> Assign to team members</li>
+                                <li><strong>Milestones:</strong> Group issues by release</li>
+                                <li><strong>Projects:</strong> Use kanban boards</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>🏷️ Releases and Tags</h3>
+                        <p>Version your software with tags and releases:</p>
+                        
+                        <div class="topic-section">
+                            <h4>Creating Tags</h4>
+                            <pre><code class="language-bash"># Create an annotated tag
+git tag -a v1.0.0 -m "Version 1.0.0 - Initial release"
+
+# Push tag to GitHub
+git push origin v1.0.0
+
+# Push all tags
+git push --tags</code></pre>
+                        </div>
+
+                        <div class="topic-section">
+                            <h4>GitHub Releases</h4>
+                            <ol>
+                                <li>Go to "Releases" tab on GitHub</li>
+                                <li>Click "Create a new release"</li>
+                                <li>Choose existing tag or create new one</li>
+                                <li>Add release notes and files</li>
+                                <li>Publish the release</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>📝 Documentation Essentials</h3>
+                        <p>Essential files every repository needs:</p>
+                        
+                        <div class="topic-section">
+                            <h4>README.md</h4>
+                            <pre><code class="language-markdown"># Project Name
+Brief description of what your project does.
+
+## Installation
+```bash
+git clone https://github.com/username/project.git
+cd project
+npm install
+```
+
+## Usage
+Explain how to use your project with examples.
+
+## Contributing
+Guidelines for contributors.
+
+## License
+This project is licensed under the MIT License.</code></pre>
+                        </div>
+
+                        <div class="topic-section">
+                            <h4>.gitignore</h4>
+                            <pre><code class="language-text"># Dependencies
+node_modules/
+*.log
+
+# Build outputs  
+dist/
+build/
+
+# Environment files
+.env
+.env.local
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+*.swp</code></pre>
+                        </div>
+
+                        <div class="topic-section">
+                            <h4>Adding a License</h4>
+                            <ol>
+                                <li>Go to your repository on GitHub</li>
+                                <li>Click "Add file" → "Create new file"</li>
+                                <li>Name it "LICENSE"</li>
+                                <li>GitHub will suggest common licenses</li>
+                                <li>Choose MIT, Apache, or GPL as appropriate</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="collaboration" class="section">
+                <div class="section-header">
+                    <h2>Collaboration & Teamwork</h2>
+                    <p class="lead">GitHub provides powerful tools for seamless collaboration. From code review to project management, work together efficiently and ship better software.</p>
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="18" cy="5" r="3"></circle>
+                                <circle cx="6" cy="12" r="3"></circle>
+                                <circle cx="18" cy="19" r="3"></circle>
+                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                            </svg>
+                        </div>
+                        <h3>Pull Requests</h3>
+                        <p>Propose changes, discuss code, and review contributions before merging. Maintain code quality through collaborative review.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="12"></line>
+                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                            </svg>
+                        </div>
+                        <h3>Issues</h3>
+                        <p>Track bugs, feature requests, and tasks. Organize work with labels, assignees, and milestones for clear project visibility.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                                <rect x="7" y="7" width="3" height="9"></rect>
+                                <rect x="14" y="7" width="3" height="5"></rect>
+                            </svg>
+                        </div>
+                        <h3>Projects</h3>
+                        <p>Organize work with kanban boards, roadmaps, and custom views. Track progress across repositories and teams.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                        </div>
+                        <h3>Actions</h3>
+                        <p>Automate testing, deployment, and workflows. Build CI/CD pipelines that run on every commit and pull request.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Collaborative Development Workflow</h3>
+                    <p>Modern development teams follow a structured workflow that ensures code quality, facilitates review, and maintains project stability.</p>
+                    
+                    <div class="git-workflow-visual">
+                        <div class="workflow-step">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                </svg>
+                                <h4>Branch</h4>
+                            </div>
+                            <p>Create feature branch</p>
+                        </div>
+                        <div class="workflow-arrow">→</div>
+                        <div class="workflow-step">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                                <h4>Develop</h4>
+                            </div>
+                            <p>Make changes & commit</p>
+                        </div>
+                        <div class="workflow-arrow">→</div>
+                        <div class="workflow-step">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="18" cy="5" r="3"></circle>
+                                    <circle cx="6" cy="12" r="3"></circle>
+                                    <circle cx="18" cy="19" r="3"></circle>
+                                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                </svg>
+                                <h4>Review</h4>
+                            </div>
+                            <p>Create pull request</p>
+                        </div>
+                        <div class="workflow-arrow">→</div>
+                        <div class="workflow-step">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <h4>Merge</h4>
+                            </div>
+                            <p>Deploy to production</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Development Timeline</h3>
+                    <p>A typical collaborative workflow from idea to deployment.</p>
+                    
+                    <div style="display: grid; gap: 1.5rem; margin-top: 2rem;">
+                        <div style="display: flex; gap: 1rem; align-items: start;">
+                            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--blue-100), var(--blue-50)); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <span style="font-weight: 600; color: var(--blue-600);">1</span>
+                            </div>
+                            <div>
+                                <h4>Create Feature Branch</h4>
+                                <p style="margin: 0.5rem 0; color: var(--stone-600);">Start with a clean branch for your feature or fix</p>
+                                <div class="terminal">
+                                    <div class="terminal-content">
+                                        <span style="color: var(--blue-400);">$</span> <span style="color: white;">git checkout -b feature/user-authentication</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; align-items: start;">
+                            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--emerald-100), var(--emerald-50)); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <span style="font-weight: 600; color: var(--emerald-600);">2</span>
+                            </div>
+                            <div>
+                                <h4>Develop & Test</h4>
+                                <p style="margin: 0.5rem 0; color: var(--stone-600);">Write code, add tests, and ensure everything works locally</p>
+                                <div class="terminal">
+                                    <div class="terminal-content">
+                                        <span style="color: var(--blue-400);">$</span> <span style="color: white;">git add .</span><br>
+                                        <span style="color: var(--blue-400);">$</span> <span style="color: white;">git commit -m "feat: implement user authentication system"</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; align-items: start;">
+                            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--amber-100), var(--amber-50)); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <span style="font-weight: 600; color: var(--amber-600);">3</span>
+                            </div>
+                            <div>
+                                <h4>Push & Create PR</h4>
+                                <p style="margin: 0.5rem 0; color: var(--stone-600);">Share your changes and request review from teammates</p>
+                                <div class="terminal">
+                                    <div class="terminal-content">
+                                        <span style="color: var(--blue-400);">$</span> <span style="color: white;">git push -u origin feature/user-authentication</span><br>
+                                        <span style="color: var(--emerald-400);"># Create pull request on GitHub</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; align-items: start;">
+                            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--stone-200), var(--stone-100)); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <span style="font-weight: 600; color: var(--stone-600);">4</span>
+                            </div>
+                            <div>
+                                <h4>Review & Merge</h4>
+                                <p style="margin: 0.5rem 0; color: var(--stone-600);">Team reviews code, discusses changes, and merges when approved</p>
+                                <div style="background: var(--stone-50); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid var(--emerald-500);">
+                                    <p style="margin: 0; font-style: italic; color: var(--stone-600);">"Looks good! Authentication implementation is clean and well-tested. Approved for merge."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="best-practices" class="section">
+                <h2>Best Practices for Developers</h2>
+                
+                <div class="practices-grid">
+                    <div class="practice-card">
+                        <h3>📝 Commit Messages</h3>
+                        <div class="good-bad">
+                            <div class="good">
+                                <h4>✅ Good</h4>
+                                <pre><code>Fix: Resolve backup script timeout issue
+
+- Increase timeout from 30s to 300s
+- Add progress indicators for long operations
+- Handle network interruptions gracefully
+
+Fixes #123</code></pre>
+                            </div>
+                            <div class="bad">
+                                <h4>❌ Bad</h4>
+                                <pre><code>fixed stuff</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="practice-card">
+                        <h3>📁 Repository Structure</h3>
+                        <div class="good-bad">
+                            <div class="good">
+                                <h4>✅ Good Structure</h4>
+                                <pre><code>Scripts/
+├── Production/
+│   ├── Backup-System.ps1
+│   └── Deploy-Application.ps1
+├── Development/
+│   └── Test-Scripts/
+├── Modules/
+├── Tests/
+└── Documentation/</code></pre>
+                            </div>
+                            <div class="bad">
+                                <h4>❌ Poor Structure</h4>
+                                <pre><code>script1.ps1
+script2.ps1
+oldscript.ps1
+backup.ps1
+test.py</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="practice-card">
+                        <h3>🔒 Security Practices</h3>
+                        <ul>
+                            <li>Never commit passwords or API keys</li>
+                            <li>Use .gitignore for sensitive files</li>
+                            <li>Use environment variables for secrets</li>
+                            <li>Enable 2FA on your GitHub account</li>
+                            <li>Use SSH keys for authentication</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="practice-card">
+                        <h3>🚀 Automation</h3>
+                        <p>Example GitHub Action for PowerShell:</p>
+                        <pre><code class="language-yaml">name: Test PowerShell Scripts
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Run Pester Tests
+      run: |
+        Install-Module -Name Pester -Force
+        Invoke-Pester -Path ./Tests/</code></pre>
+                    </div>
+                </div>
+
+                <div class="checklist">
+                    <h3>Pre-Commit Checklist</h3>
+                    <div class="checklist-items">
+                        <label><input type="checkbox"> Code follows team conventions</label>
+                        <label><input type="checkbox"> Tests pass locally</label>
+                        <label><input type="checkbox"> No sensitive data in commit</label>
+                        <label><input type="checkbox"> Commit message is descriptive</label>
+                        <label><input type="checkbox"> Documentation updated if needed</label>
+                        <label><input type="checkbox"> Breaking changes documented</label>
+                    </div>
+                </div>
+            </section>
+
+            <section id="final-quiz" class="section">
+                <div class="section-header">
+                    <h2>GitHub Mastery Quiz</h2>
+                    <p class="lead">Test your understanding with this comprehensive 21-question quiz covering all learning objectives. Score 80% or higher to earn your GitHub certification.</p>
+                </div>
+                
+                <div class="quiz-intro card" id="quizIntro">
+                    <h3>📝 Ready to Test Your Knowledge?</h3>
+                    <p>This comprehensive quiz covers all topics from Git basics to advanced GitHub features. You need to score at least 17 out of 21 questions (80%) to pass and earn your certificate.</p>
+                    
+                    <div class="quiz-requirements">
+                        <h4>Quiz Format:</h4>
+                        <ul>
+                            <li>🔢 21 multiple-choice questions</li>
+                            <li>📊 Must score 80% or higher to pass (17+ correct)</li>
+                            <li>🏆 Certificate available upon passing</li>
+                            <li>🔄 Can retake if needed</li>
+                            <li>📚 Covers all 21 learning objectives</li>
+                        </ul>
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="startQuiz()">Start Quiz</button>
+                </div>
+
+                <div class="quiz-container" id="quizContainer" style="display:none;">
+                    <div class="quiz-header">
+                        <div class="quiz-progress">
+                            <span>Question <span id="currentQuestionNum">1</span> of 21</span>
+                            <div class="progress-bar-quiz">
+                                <div class="progress-fill-quiz" id="quizProgressBar"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quiz-content">
+                        <div class="question-container" id="questionContainer">
+                            <!-- Current question will be displayed here -->
+                        </div>
+
+                        <div class="quiz-navigation">
+                            <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()" disabled>← Previous</button>
+                            <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">Next →</button>
+                            <button class="btn btn-primary" id="submitBtn" onclick="submitQuiz()" style="display:none;">Submit Quiz</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quiz-results" id="quizResults" style="display:none;">
+                    <!-- Results will be displayed here -->
+                </div>
+
+                <div class="certificate-section" id="certificateSection" style="display:none;">
+                    <div class="certificate-form card">
+                        <h3>🎉 Congratulations! You Passed!</h3>
+                        <p>You've earned your GitHub certification! Enter your full name to generate your certificate.</p>
+                        
+                        <div class="form-group">
+                            <label for="studentName">Full Name:</label>
+                            <input type="text" id="studentName" placeholder="Enter your full name" class="form-input" />
+                        </div>
+                        <button class="btn btn-primary" onclick="generateCertificate()">🏆 Generate Certificate</button>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="nav-controls">
+                <button class="btn btn-secondary" id="prevBtn" onclick="previousSection()" disabled>← Previous</button>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextSection()">Next →</button>
+            </div>
+        </main>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
